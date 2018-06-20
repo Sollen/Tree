@@ -1,0 +1,94 @@
+﻿.cont {
+    height: 100%;
+    width: 100%;
+    position:fixed;
+    margin: 0;
+    
+}
+.cont_header {
+    height: 36px;
+    background-color: #157fcc;
+    background-image: none;    
+    margin-right:20px;
+}
+
+.cont_body {
+    background: url('../img/square.gif') repeat;
+    height: 100%;
+    margin-right: 20px;
+}
+
+.panel {
+    background-color:white;
+    width:350px;
+    height:400px;
+    display:block;
+    position:relative;
+    top: 10%;
+    left:10%;
+
+}
+.panel_header {
+    height: 36px;
+    background-color: #157fcc;
+    background-image: none;
+}
+
+.panel_content {
+    overflow:auto;
+}
+
+.header_text {
+    color:white;
+    font-size:17px;
+    font-weight:bold;
+    font-family:'Times New Roman';
+    text-transform:none;
+    position:absolute;
+    top:10px;
+    left:5px;   
+}
+
+
+.Container {
+    padding: 0;
+    margin: 0;
+}
+.Container li {
+    list-style-type: none; /* убрать кружочки/точечки */
+}
+.Node {
+    margin-left:18px;
+    zoom:1;
+}
+.IsRoot {
+    margin-left:0;
+}
+
+.ExpandOpen .Expand {
+    width: 36px;
+    height: 18px;
+    float: left;
+    background: url('../img/tree/arrows.png');
+    position: absolute;
+    margin-left: -18px;
+    clip: rect(auto,36px,auto,18px);
+}
+.ExpandClose .Expand {
+    height: 18px;
+    float: left;
+    background: url('../img/tree/arrows.png');
+    position: absolute;
+    width: 18px;
+    margin-left: 0px;
+    clip: rect(auto,18px,auto,0px);
+}
+
+.Content {
+    margin-left:18px;
+    min-height:18px;
+}
+
+* html .Content {
+    height:18px;
+}
