@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
-using System.Threading.Tasks;
 using TreeReorder.Entity;
 using TreeReorder.Models;
 
@@ -16,7 +15,7 @@ namespace TreeReorder.Helpers
         List<Node> Get(int parretntId);
         bool Set<T>(int nodeId, int parrentId);
         bool Insert(Node node);
-        bool SetParent(int nodeId, int ParentId);
+        bool SetParent(int nodeId, int parentId);
     }
 
     public class EntityHelper:IEntityHelpers
@@ -25,7 +24,7 @@ namespace TreeReorder.Helpers
         //TODO: Нужно сделать возможность сложного условия.
 
         ///<summary>
-        ///Метод Get для работы с нодами. Возвращает List<Node> по Id родителя.
+        ///Метод Get для работы с нодами. Возвращает List по Id родителя.
         ///Возвращает null в случае ошибки
         ///</summary>
         ///<param name="parretntId">ID родителя</param>
@@ -38,7 +37,7 @@ namespace TreeReorder.Helpers
                     return context.Nodes.Where(x => x.parentId == parretntId).ToList(); 
                 }
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return null;
             }
@@ -69,7 +68,7 @@ namespace TreeReorder.Helpers
 
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -82,25 +81,25 @@ namespace TreeReorder.Helpers
         ///Использованная хранимаюв БД процедура        
         ///</summary>
         ///<param name="nodeId">Id ноды для изменения</param>
-        ///<param name="ParentId">Id родителя</param>
-        public bool SetParent(int nodeId, int ParentId)
+        ///<param name="parentId">Id родителя</param>
+        public bool SetParent(int nodeId, int parentId)
         {
             try
             {
                 using (NodeContext context = new NodeContext())
                 {
-                    SqlParameter[] param =
+                    object[] param =
                         {
                         new SqlParameter("@nodeid", nodeId),
-                        new SqlParameter("@Parentid", ParentId)
+                        new SqlParameter("@Parentid", parentId)
                     };
 
-                    var er = context.Nodes.FromSql($"SetParentId @nodeid, @Parentid", param);
+                    context.Nodes.FromSql($"SetParentId @nodeid, @Parentid", param);
                     context.SaveChanges();
                 }
                 return true;
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }
@@ -129,7 +128,7 @@ namespace TreeReorder.Helpers
                 return true;                
                 
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 return false;
             }

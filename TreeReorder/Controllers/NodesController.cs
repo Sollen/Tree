@@ -1,11 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using TreeReorder.Helpers;
-using TreeReorder.Models;
 
 namespace TreeReorder.Controllers
 {
@@ -43,7 +40,7 @@ namespace TreeReorder.Controllers
         ///Если родитель файл, то нода помещается в туже папку, что и этот файл(родитель).
         ///</summary>
         ///<param name="nodeId">Id ноды</param>
-        ///<param name="nodeId">Id родителя</param>
+        ///<param name="parentId">Id родителя</param>
         [Route("/Setparent/{nodeId}/{parentId}")]
         [HttpGet]
         public IActionResult Setparent(int nodeId, int parentId)

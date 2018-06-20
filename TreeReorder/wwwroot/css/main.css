@@ -85,14 +85,14 @@
         clip: rect(auto,36px,auto,18px);
     }
     .ExpandClosed .Expand {
-        margin-left: 0px;
-        clip: rect(auto,18px,auto,0px);
+        margin-left: 0;
+        clip: rect(auto,18px,auto,0);
     }
 
     .ExpandLeaf .Expand {
         background-image: url('../img/tree/leaf.png');
-        margin-left: 0px;
-        clip: rect(auto,18px,auto,0px);
+        margin-left: 0;
+        clip: rect(auto,18px,auto,0);
     }
 .Content, .RootContent {
     margin-left:18px;
@@ -124,8 +124,8 @@
     z-index: 9999;
     position: absolute;
     display: none;
-    top:0px;
-    left:0px;
+    top:0;
+    left:0;
     background-color: #555555;
     padding: 5px 10px 5px 10px;
     color: white;
