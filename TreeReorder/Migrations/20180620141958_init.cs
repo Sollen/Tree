@@ -12,15 +12,15 @@ namespace TreeReorder.Migrations
                 name: "Nodes",
                 columns: table => new
                 {
-                    Name = table.Column<string>(nullable: true),
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ParrentId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    parentId = table.Column<int>(nullable: false),
                     Type = table.Column<int>(nullable: false),
                     CreateDate = table.Column<DateTime>(nullable: false),
                     ModifiDate = table.Column<DateTime>(nullable: false),
                     Discriminator = table.Column<string>(nullable: false),
-                    Size = table.Column<int>(nullable: true),
+                    Size = table.Column<long>(nullable: true),
                     Path = table.Column<string>(nullable: true)
                 },
                 constraints: table =>

@@ -4,8 +4,8 @@
     <meta charset="utf-8" />
     <title></title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-    <link href="css/main.css" rel="stylesheet" />
+    <script src="js/main.js?3"></script>
+    <link href="css/main.css?4" rel="stylesheet" />
 </head>
 <body>
     <div class="cont">
@@ -15,23 +15,18 @@
                 <div class="panel_header">
                     <span class="header_text">Files</span>
                 </div>
-                <div class="panel_content">
+                <div class="panel_content" >
 
                     <ul class="Container">
-                        <li class="Node IsRoot ExpandOpen">
+                        <li class="Node IsRoot ExpandOpen" nodeID="0">
                             <div class="Expand"></div>
-                            <div class="Content">Root</div>
-                            <ul class="Container">
-                                <li class="Node ExpandLeaf">
-                                    <div class="Expand"></div>
-                                    <div class="Content">Item 1</div>
-                                </li>
-                            </ul>
+                            <div class="RootContent">Root</div>
                         </li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
+<div id="tooltip"></div>
 </body>
 </html>

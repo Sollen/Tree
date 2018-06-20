@@ -5,8 +5,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="wwwroot\resources\" />
+    <Compile Remove="App_Data\**" />
+    <Compile Remove="wwwroot\resources\**" />
+    <Compile Remove="wwwroot\ы\**" />
+    <Content Remove="App_Data\**" />
+    <Content Remove="wwwroot\resources\**" />
+    <Content Remove="wwwroot\ы\**" />
+    <EmbeddedResource Remove="App_Data\**" />
+    <EmbeddedResource Remove="wwwroot\resources\**" />
+    <EmbeddedResource Remove="wwwroot\ы\**" />
+    <None Remove="App_Data\**" />
+    <None Remove="wwwroot\resources\**" />
+    <None Remove="wwwroot\ы\**" />
   </ItemGroup>
 
   <ItemGroup>

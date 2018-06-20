@@ -10,7 +10,7 @@ using TreeReorder.Entity;
 namespace TreeReorder.Migrations
 {
     [DbContext(typeof(NodeContext))]
-    [Migration("20180619145347_init")]
+    [Migration("20180620141958_init")]
     partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -34,11 +34,12 @@ namespace TreeReorder.Migrations
 
                     b.Property<DateTime>("ModifiDate");
 
-                    b.Property<string>("Name");
-
-                    b.Property<int>("ParrentId");
+                    b.Property<string>("Name")
+                        .IsRequired();
 
                     b.Property<int>("Type");
+
+                    b.Property<int>("parentId");
 
                     b.HasKey("Id");
 
@@ -53,7 +54,7 @@ namespace TreeReorder.Migrations
 
                     b.Property<string>("Path");
 
-                    b.Property<int>("Size");
+                    b.Property<long>("Size");
 
                     b.ToTable("FileNode");
 

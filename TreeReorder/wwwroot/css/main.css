@@ -53,9 +53,10 @@
 .Container {
     padding: 0;
     margin: 0;
+    display: block;
 }
 .Container li {
-    list-style-type: none; /* убрать кружочки/точечки */
+    list-style-type: none; 
 }
 .Node {
     margin-left:18px;
@@ -64,31 +65,69 @@
 .IsRoot {
     margin-left:0;
 }
-
-.ExpandOpen .Expand {
-    width: 36px;
+.ExpandLoad {
     height: 18px;
     float: left;
-    background: url('../img/tree/arrows.png');
+    background-image: url('../img/tree/expand_loading.gif');
     position: absolute;
-    margin-left: -18px;
-    clip: rect(auto,36px,auto,18px);
+    width: 17px;
 }
-.ExpandClose .Expand {
+.Expand {
     height: 18px;
     float: left;
-    background: url('../img/tree/arrows.png');
+    background-image: url('../img/tree/arrows.png');
     position: absolute;
-    width: 18px;
-    margin-left: 0px;
-    clip: rect(auto,18px,auto,0px);
+    width: 17px;
 }
+    .ExpandOpen .Expand {
+        width: 36px;
+        margin-left: -18px;
+        clip: rect(auto,36px,auto,18px);
+    }
+    .ExpandClosed .Expand {
+        margin-left: 0px;
+        clip: rect(auto,18px,auto,0px);
+    }
 
-.Content {
+    .ExpandLeaf .Expand {
+        background-image: url('../img/tree/leaf.png');
+        margin-left: 0px;
+        clip: rect(auto,18px,auto,0px);
+    }
+.Content, .RootContent {
     margin-left:18px;
     min-height:18px;
+    width: 30%;
 }
 
+.ExpandOpen .Expand, .ExpandClosed .Expand {
+    cursor: pointer; 
+}
+
+.ExpandLeaf .Expand {
+    cursor: auto; 
+}
+
+
+.ExpandClosed .Container {
+    display: none;
+}
+
+
+
 * html .Content {
-    height:18px;
+    height: 18px;
+}
+
+
+#tooltip {
+    z-index: 9999;
+    position: absolute;
+    display: none;
+    top:0px;
+    left:0px;
+    background-color: #555555;
+    padding: 5px 10px 5px 10px;
+    color: white;
+    
 }

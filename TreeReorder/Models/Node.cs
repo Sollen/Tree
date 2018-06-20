@@ -13,10 +13,10 @@ namespace TreeReorder.Models
     /// </summary>
     public abstract class Node
     {
-        protected Node(string name, int parrentId, NodeType type)
+        protected Node(string name, int parentId, NodeType type)
         {
             Name = name;
-            ParrentId = parrentId;
+            parentId = parentId;
             Type = NodeType.File;
             CreateDate = DateTime.Now;
             ModifiDate = DateTime.Now;
@@ -26,7 +26,7 @@ namespace TreeReorder.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public int ParrentId { get; set; }
+        public int parentId { get; set; }
         [Required]
         public NodeType Type { get; set; }
         [Required]
@@ -41,8 +41,8 @@ namespace TreeReorder.Models
     {
         //TODO: Реализовать метод расчёта Размера файла
 
-        public FileNode(string name, int parrentId, string path ="")
-            :base(name, parrentId, NodeType.File)
+        public FileNode(string name, int parentId, string path ="")
+            :base(name, parentId, NodeType.File)
         {
             Size = 1;
             Path = path;
@@ -55,8 +55,8 @@ namespace TreeReorder.Models
     /// </summary>
     public class FolderNode : Node
     {
-        public FolderNode(string name, int parrentId) 
-            : base(name, parrentId, NodeType.Folder)
+        public FolderNode(string name, int parentId) 
+            : base(name, parentId, NodeType.Folder)
         {
         }
         

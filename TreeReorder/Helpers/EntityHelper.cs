@@ -13,31 +13,29 @@ namespace TreeReorder.Helpers
 
     public interface IEntityHelpers
     {
-        List<Node> Get<T>(T parametr, Func<Node, T, bool> func);
-        bool Set<T>(int nodeId, T parametr, Action<Node, T> action);
+        List<Node> Get(int parretntId);
+        bool Set<T>(int nodeId, int parrentId);
         bool Insert(Node node);
-        bool SetParrent(int nodeId, int parrentId);
+        bool SetParent(int nodeId, int ParentId);
     }
 
     public class EntityHelper:IEntityHelpers
     {
-        
+
         //TODO: Нужно сделать возможность сложного условия.
 
         ///<summary>
-        ///Метод Get для работы с нодами. Возвращает List<Node> по заданному условию.
+        ///Метод Get для работы с нодами. Возвращает List<Node> по Id родителя.
         ///Возвращает null в случае ошибки
         ///</summary>
-        ///<param name="func">Условия для фильрации</param>
-        ///<param name="parametr">Параметр для условия фильтрации</param>
-        public List<Node> Get<T>(T parametr, Func<Node, T, bool> func)
+        ///<param name="parretntId">ID родителя</param>
+        public List<Node> Get(int parretntId)
         {
             try
             {
                 using (NodeContext context = new NodeContext())
                 {
-                    var r = context.Nodes.Where((node) => func(node, parametr)).ToList();
-                    return r;
+                    return context.Nodes.Where(x => x.parentId == parretntId).ToList(); 
                 }
             }
             catch (Exception e)
@@ -51,14 +49,13 @@ namespace TreeReorder.Helpers
 
         ///<summary>
         ///Метод Set для работы с нодами.
-        ///Задаёт значение parametr для заданой ноды по заданному условию
+        ///Задаёт значение ID родителя для заданой ноды
         ///Возвращает true в случае успеха. False в случае исключения.
         ///Проверка на наличие ноды в БД. При отсутствии выбразывается исключение.
         ///</summary>
-        ///<param name="action">Метод назначения полей</param>
-        ///<param name="parametr">Новое значение поля</param>
+        ///<param name="parrentId">Id родителя</param>
         ///<param name="nodeId">Id ноды</param>
-        public bool Set<T>(int nodeId, T parametr, Action<Node, T> action)
+        public bool Set<T>(int nodeId, int parrentId)
         {
             try
             {
@@ -66,7 +63,7 @@ namespace TreeReorder.Helpers
                 {
                     var node = context.Nodes.FirstOrDefault(x => x.Id == nodeId);
                     if (node == null) throw new ArgumentNullException();
-                    action(node,parametr);
+                    node.parentId = parrentId;
                     context.SaveChanges();
                 }
 
@@ -85,8 +82,8 @@ namespace TreeReorder.Helpers
         ///Использованная хранимаюв БД процедура        
         ///</summary>
         ///<param name="nodeId">Id ноды для изменения</param>
-        ///<param name="parrentId">Id родителя</param>
-        public bool SetParrent(int nodeId, int parrentId)
+        ///<param name="ParentId">Id родителя</param>
+        public bool SetParent(int nodeId, int ParentId)
         {
             try
             {
@@ -95,10 +92,10 @@ namespace TreeReorder.Helpers
                     SqlParameter[] param =
                         {
                         new SqlParameter("@nodeid", nodeId),
-                        new SqlParameter("@parrentid", parrentId)
+                        new SqlParameter("@Parentid", ParentId)
                     };
 
-                    var er = context.Nodes.FromSql($"SetParrentId @nodeid, @parrentid", param);
+                    var er = context.Nodes.FromSql($"SetParentId @nodeid, @Parentid", param);
                     context.SaveChanges();
                 }
                 return true;

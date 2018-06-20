@@ -19,35 +19,20 @@ namespace TreeReorder.Controllers
         public NodesController(IEntityHelpers entityHelper)
         {
             this.entityHelper = entityHelper;
-            //List<Node> nodes = new List<Node>
-            //{
-            //    new FileNode("File Node1"),
-            //    new FileNode("File Node2"),
-            //    new FileNode("File Node3"),
-            //    new FileNode("File Node4"),
-            //    new FolderNode("Folder Node 1"),
-            //    new FolderNode("Folder Node 2"),
-            //    new FolderNode("Folder Node 3"),
-            //    new FolderNode("Folder Node 4"),
-            //};
-
-            //foreach (var node in nodes)
-            //{
-            //    entityHelper.Insert(node);
-            //}
+            
         }
 
         ///<summary>
         ///Возвращает все ноды с заданным родителем. (Раскрывает папку)
         ///</summary>
-        ///<param name="parrentId">Id родителя</param>
-        [Route("/GetNodes/{parrentId}")]
+        ///<param name="parentId">Id родителя</param>
+        [Route("/GetNodes/{parentId}")]
         [HttpGet]
-        public async Task GetNodes(int parrentId)
+        public async Task GetNodes(int parentId)
         {            
             await SetResponse(new
             {
-                nodes = entityHelper.Get<int>(parrentId, (node,parrent) => node.ParrentId == parrent)
+                nodes = entityHelper.Get(parentId)
             });
 
         }
@@ -59,12 +44,12 @@ namespace TreeReorder.Controllers
         ///</summary>
         ///<param name="nodeId">Id ноды</param>
         ///<param name="nodeId">Id родителя</param>
-        [Route("/Setparrent/{nodeId}/{parrentId}")]
+        [Route("/Setparent/{nodeId}/{parentId}")]
         [HttpGet]
-        public IActionResult SetParrent(int nodeId, int parrentId)
+        public IActionResult Setparent(int nodeId, int parentId)
         {
 
-            if (entityHelper.SetParrent(nodeId, parrentId)) return Ok();
+            if (entityHelper.SetParent(nodeId, parentId)) return Ok();
             return StatusCode(501);
         }       
 

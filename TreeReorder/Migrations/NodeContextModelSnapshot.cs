@@ -35,9 +35,9 @@ namespace TreeReorder.Migrations
                     b.Property<string>("Name")
                         .IsRequired();
 
-                    b.Property<int>("ParrentId");
-
                     b.Property<int>("Type");
+
+                    b.Property<int>("parentId");
 
                     b.HasKey("Id");
 
